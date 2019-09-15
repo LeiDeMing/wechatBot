@@ -28,7 +28,7 @@ async function onLogin(user) {
     console.log(`已开启机器人自动聊天模式`);
   }
   // 登陆后创建定时任务
-  await initDay();
+  // await initDay();
 }
 
 //登出
@@ -60,22 +60,22 @@ async function onMessage(msg) {
         await delay(2000);
         await contact.say(res);
       }
-    } else if (config.AUTOREPLY && config.AUTOREPLYPERSON.indexOf(alias) > -1) {
+    } else if (config.AUTOREPLY /* && config.AUTOREPLYPERSON.indexOf(alias) > -1 */) {
       // 如果开启自动聊天且已经指定了智能聊天的对象才开启机器人聊天\
       if (content) {
         let reply;
         if (config.DEFAULTBOT == '0') {
           // 天行聊天机器人逻辑
-          reply = await superagent.getReply(content);
-          console.log('天行机器人回复：', reply);
+          // reply = await superagent.getReply(content);
+          // console.log('天行机器人回复：', reply);
         } else if (config.DEFAULTBOT == '1') {
           // 图灵聊天机器人
           reply = await superagent.getTuLingReply(content);
           console.log('图灵机器人回复：', reply);
         } else if (config.DEFAULTBOT == '2') {
-          // 天行对接的图灵聊
-          reply = await superagent.getTXTLReply(content);
-          console.log('天行对接的图灵机器人回复：', reply);
+          // // 天行对接的图灵聊
+          // reply = await superagent.getTXTLReply(content);
+          // console.log('天行对接的图灵机器人回复：', reply);
         }
         try {
           await delay(2000);
